@@ -2,6 +2,9 @@
 %{?!opensshver: %global opensshver 9.1p1}
 %define static_openssl 1
 
+# no debug package
+%define debug_package %{nil}
+
 # wheather to build openssl
 %global no_build_openssl 0
 
@@ -105,7 +108,7 @@ Group: Applications/Internet
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Obsoletes: ssh
 %if %{build6x}
-PreReq: initscripts >= 5.00
+Requires(pre,preun): initscripts >= 5.00
 %else
 Requires: initscripts >= 5.20
 %endif
